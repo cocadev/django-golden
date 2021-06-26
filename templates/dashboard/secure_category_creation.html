@@ -1,0 +1,179 @@
+{% extends "dashboard/management_base.html" %}
+{% load widget_tweaks %}
+
+{% block page_css_style %}
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="/static/app-assets/css/core/menu/menu-types/vertical-menu-modern.css">
+    <link rel="stylesheet" type="text/css" href="/static/app-assets/css/core/colors/palette-gradient.css">
+    <link rel="stylesheet" type="text/css" href="/static/app-assets/vendors/css/pickers/daterange/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="/static/app-assets/vendors/css/pickers/pickadate/pickadate.css">
+    <link rel="stylesheet" type="text/css" href="/static/app-assets/css/core/menu/menu-types/vertical-menu-modern.css">
+    <link rel="stylesheet" type="text/css" href="/static/app-assets/css/plugins/pickers/daterange/daterange.css">
+    <link rel="stylesheet" type="text/css" href="/static/app-assets/vendors/css/forms/selects/select2.min.css">
+    <!-- END Page Level CSS-->
+{% endblock %}
+
+{% block page_js %}
+    <script src="/static/app-assets/vendors/js/pickers/pickadate/picker.js" type="text/javascript"></script>
+    <script src="/static/app-assets/vendors/js/pickers/pickadate/picker.date.js" type="text/javascript"></script>
+    <script src="/static/app-assets/vendors/js/pickers/pickadate/picker.time.js" type="text/javascript"></script>
+    <script src="/static/app-assets/vendors/js/pickers/pickadate/legacy.js" type="text/javascript"></script>
+    <script src="/static/app-assets/vendors/js/pickers/dateTime/moment-with-locales.min.js"
+            type="text/javascript"></script>
+    <script src="/static/app-assets/vendors/js/pickers/daterange/daterangepicker.js"
+            type="text/javascript"></script>
+
+    <script src="/static/app-assets/js/core/libraries/jquery_ui/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="/static/app-assets/js/scripts/ui/jquery-ui/date-pickers.js" type="text/javascript"></script>
+    <script src="/static/app-assets/vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
+
+    <script src="/static/app-assets/vendors/js/forms/toggle/switchery.min.js" type="text/javascript"></script>
+    <script src="/static/app-assets/js/scripts/forms/select/form-select2.js" type="text/javascript"></script>
+    <!-- END PAGE VENDOR JS-->
+
+
+    <script src="/static/assets/js/categories.js" type="text/javascript"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            Categories.init()
+        });
+    </script>
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
+                <h3 class="content-header-title mb-0 d-inline-block">Categories</h3>
+                <div class="row breadcrumbs-top d-inline-block">
+                    <div class="breadcrumb-wrapper col-12">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'secure.categories' %}">Categories</a>
+                            </li>
+                            <li class="breadcrumb-item active">Create Category
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <!-- Row separator layout section start -->
+            <section id="row-separator-form-layouts">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title" id="row-separator-icons">Category Creation Form</h4>
+                                <a class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body">
+                                    <div class="card-text">
+                                        <p>Add <code>.row-separator</code> to form tag to add border bottom
+                                            to a form-group. In this example icons are used with form
+                                            controls to show the row separator functionality.</p>
+                                    </div>
+                                    <form class="form form-horizontal" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <h4 class="form-section"><i class="la la-commenting"></i> Product Infos</h4>
+                                            <div class="row">
+                                                  <div class="col-md-4">
+                                                    <div class="col-lg-10 col-md-10">
+                                                        <div class="card">
+                                                            <div class="card-content">
+                                                                <a href="#" id="category_img">
+                                                                    <img class="card-img-top img-fluid"
+                                                                         src="{{ form.instance.image_url|default_if_none:'/static/app-assets/images/photo_default.png' }}"
+                                                                         alt="Card image cap">
+                                                                </a>
+                                                                <div class="card-body">
+                                                                    {% if form.instance.name %}
+                                                                        <h4 class="card-title" id="category-name-prev">
+                                                                            {{ form.instance.name }}</h4>
+                                                                    {% else %}
+                                                                        <h4 class="card-title" id="category-name-prev">
+                                                                            Category Name</h4>
+                                                                    {% endif %}
+
+                                                                    {% if form.instance.desciption %}
+                                                                        <p class="card-text"
+                                                                           id="category-desc-prev">{{ form.instance.desciption }}
+                                                                            {% else %}
+                                                                        <p class="card-text" id="category-desc-prev">
+                                                                            Here
+                                                                            you can add some description of your
+                                                                            category.
+                                                                        </p>
+                                                                    {% endif %}
+
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group row">
+                                                            <label class="col-md-3 label-control">Name</label>
+                                                            <div class="col-md-9">
+                                                                {{ form.name|add_class:"form-control"|attr:"placeholder:Product name"|attr:"id:category_name" }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group row">
+                                                            <label class="col-md-3 label-control">Description</label>
+                                                            <div class="col-md-9">
+                                                                {{ form.description|add_class:"form-control"|attr:"placeholder:"|attr:"rows:16"|attr:"id:category-desc"|attr:"maxlength:220" }}
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="category_img_input_div">
+                                                            {{ form.image|add_class:"form-control category_img_input"|attr:"id:product_img_input"|attr:"aria-invalid:false" }}
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+
+                                            <div class="row">
+
+                                            </div>
+                                        </div>
+                                        <div class="form-actions right">
+                                            <button type="button" class="btn btn-warning mr-1">
+                                                <i class="ft-x"></i> Cancel
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="la la-check-square-o"></i> Save
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- // Row separator layout section end -->
+        </div>
+    </div>
+
+{% endblock %}

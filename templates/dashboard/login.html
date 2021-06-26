@@ -1,0 +1,73 @@
+{% extends "dashboard/authentification_base.html" %}
+
+{% block content %}
+    <section class="flexbox-container">
+        <div class="col-12 d-flex align-items-center justify-content-center">
+            <div class="col-lg-5 col-xl-5 col-md-8 col-10 box-shadow-2 p-0">
+                <div class="card border-grey border-lighten-3 m-0 login-card">
+                    <div class="card-header border-0">
+                        <div class="card-title text-center">
+                            <div class="p-1">
+                                <a href="/">
+                                    <img src="/static/app-assets/images/logo/logo_oa.png" alt="branding logo" class="logo">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content login-card">
+                        <p class="card-subtitle line-on-side text-muted text-center font-small-3 mx-2">
+                            <span>Account details</span>
+                        </p>
+                        <div class="card-body pt-0">
+                            {% if form.errors %}
+                                <p class="error">Sorry, that's not a valid username or password</p>
+                            {% endif %}
+
+                            <form class="form-horizontal" action="/accounts/auth/" method="post">
+                                {% csrf_token %}
+                                <fieldset class="form-group position-relative has-icon-left">
+                                    <input type="text" class="form-control input-lg"
+                                           id="username"
+                                           placeholder="Your E-mail"
+                                           tabindex="1" required
+                                           name="username"
+                                           data-validation-required-message="Please enter your E-mail">
+                                    <div class="form-control-position">
+                                        <i class="ft-user oa-dark-color"></i>
+                                    </div>
+                                    <div class="help-block font-small-3"></div>
+                                </fieldset>
+                                <fieldset class="form-group position-relative has-icon-left">
+                                    <input type="password" class="form-control input-lg" id="password"
+                                           placeholder="Enter Password"
+                                           tabindex="2" required
+                                           name="password"
+                                           data-validation-required-message="Please enter valid passwords.">
+                                    <div class="form-control-position">
+                                        <i class="la la-key oa-dark-color"></i>
+                                    </div>
+                                    <div class="help-block font-small-3"></div>
+                                </fieldset>
+                                <div class="form-group row">
+                                    <div class="col-md-12 col-12 float-sm-left text-center text-sm-right"><a
+                                            href="recover-password.html" class="card-link">Forgot Password?</a></div>
+                                </div>
+                                <button type="submit" class="btn oa-btn-white btn-block btn-lg"><i class="ft-unlock"></i>
+                                    Login
+                                </button>
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            <div class="">
+                                <p class="float-sm-left text-center m-0"><a href="https://orderangel.com"
+                                                                            class="card-link">orderangel.com</a></p>
+                                <p class="float-sm-right text-center m-0">Would you like a free trial? <a
+                                        href="/signup" class="card-link">Sign Up</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

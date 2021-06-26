@@ -1,0 +1,25 @@
+
+python manage.py makemigrations ==== installed_app_name ====
+
+python manage.py migrate_schemas
+
+python  manage.py shell
+
+from authentication.models import Tenant
+t = Tenant(domain_url='orderangel.de',schema_name='public',name='public', store_id='HH1111')
+t.save()
+
+
+python manage.py createsuperuser
+
+
+translation: https://medium.com/@nolanphillips/a-short-intro-to-translating-your-site-with-django-1-8-343ea839c89b
+
+
+sudo certbot --nginx -d orderangel.de -d www.orderangel.de -d vapiano.orderangel.de -d losteria.orderangel.de  -d ciaobella.orderangel.de
+
+https://www.ssllabs.com/ssltest/analyze.html?d=orderangel.de
+https://www.ssllabs.com/ssltest/analyze.html?d=www.orderangel.de
+https://www.ssllabs.com/ssltest/analyze.html?d=vapiano.orderangel.de
+https://www.ssllabs.com/ssltest/analyze.html?d=losteria.orderangel.de
+https://www.ssllabs.com/ssltest/analyze.html?d=ciaobella.orderangel.de

@@ -1,0 +1,247 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-08 17:23+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: orderangel/settings.py:157
+msgid "English"
+msgstr ""
+
+#: orderangel/settings.py:158
+msgid "French"
+msgstr ""
+
+#: orderangel/settings.py:159
+msgid "German"
+msgstr ""
+
+#: orderangel/settings.py:160
+msgid "Spain"
+msgstr ""
+
+#: orderangel/settings.py:161
+msgid "Turkey"
+msgstr ""
+
+#: templates/dashboard/management_base.html:84
+msgid "Hello"
+msgstr ""
+
+#: templates/dashboard/management_base.html:108
+msgid "General"
+msgstr ""
+
+#: templates/dashboard/management_base.html:115
+msgid "Dashboard"
+msgstr ""
+
+#: templates/dashboard/management_base.html:118
+#: templates/dashboard/secure_employee_creation.html:34
+#: templates/dashboard/secure_employee_creation.html:38
+#: templates/dashboard/secure_employee_profile.html:34
+#: templates/dashboard/secure_employee_profile.html:38
+#: templates/dashboard/secure_employees.html:58
+#: templates/dashboard/secure_employees.html:62
+msgid "Employees"
+msgstr ""
+
+#: templates/dashboard/management_base.html:124
+#: templates/dashboard/secure_settings.html:51
+#: templates/dashboard/secure_settings.html:55
+msgid "Settings"
+msgstr ""
+
+#: templates/dashboard/management_base.html:128
+msgid "Products & Categories"
+msgstr ""
+
+#: templates/dashboard/management_base.html:135
+msgid "Products"
+msgstr ""
+
+#: templates/dashboard/management_base.html:139
+msgid "Categories"
+msgstr ""
+
+#: templates/dashboard/management_base.html:144
+msgid "Orders"
+msgstr ""
+
+#: templates/dashboard/management_base.html:148
+msgid "Clients"
+msgstr ""
+
+#: templates/dashboard/management_base.html:152
+msgid "Statistic"
+msgstr ""
+
+#: templates/dashboard/management_base.html:161
+msgid "Support"
+msgstr ""
+
+#: templates/dashboard/management_base.html:166
+msgid "Documentation"
+msgstr ""
+
+#: templates/dashboard/management_base.html:172
+msgid "Contact us"
+msgstr ""
+
+#: templates/dashboard/secure_employee_creation.html:40
+#: templates/dashboard/secure_employees.html:74
+msgid "New Employee"
+msgstr ""
+
+#: templates/dashboard/secure_employee_creation.html:54
+msgid "Employee Creation From"
+msgstr ""
+
+#: templates/dashboard/secure_employee_creation.html:93
+#: templates/dashboard/secure_employee_profile.html:106
+msgid "Login Info "
+msgstr ""
+
+#: templates/dashboard/secure_employee_creation.html:96
+#: templates/dashboard/secure_employee_profile.html:110
+#: templates/dashboard/secure_employees.html:102
+msgid "E-mail"
+msgstr ""
+
+#: templates/dashboard/secure_employee_creation.html:103
+#: templates/dashboard/secure_employee_profile.html:116
+msgid "Password"
+msgstr ""
+
+#: templates/dashboard/secure_employee_creation.html:108
+#: templates/dashboard/secure_employee_profile.html:122
+msgid "User Info"
+msgstr ""
+
+#: templates/dashboard/secure_employee_creation.html:110
+#: templates/dashboard/secure_employee_profile.html:125
+#: templates/dashboard/secure_employees.html:100
+msgid "First name"
+msgstr ""
+
+#: templates/dashboard/secure_employee_creation.html:116
+#: templates/dashboard/secure_employee_profile.html:131
+#: templates/dashboard/secure_employees.html:101
+msgid "Last name"
+msgstr ""
+
+#: templates/dashboard/secure_employee_creation.html:122
+#: templates/dashboard/secure_employee_profile.html:137
+#: templates/dashboard/secure_employees.html:103
+msgid "Contact Number"
+msgstr ""
+
+#: templates/dashboard/secure_employee_creation.html:128
+#: templates/dashboard/secure_employee_profile.html:142
+msgid "Birthday"
+msgstr ""
+
+#: templates/dashboard/secure_employee_creation.html:136
+#: templates/dashboard/secure_employee_profile.html:149
+#: templates/dashboard/secure_employees.html:104
+msgid "Position"
+msgstr ""
+
+#: templates/dashboard/secure_employee_creation.html:143
+#: templates/dashboard/secure_employee_profile.html:156
+msgid "Street"
+msgstr ""
+
+#: templates/dashboard/secure_employee_creation.html:148
+#: templates/dashboard/secure_employee_profile.html:161
+msgid "House Number"
+msgstr ""
+
+#: templates/dashboard/secure_employee_creation.html:155
+#: templates/dashboard/secure_employee_profile.html:168
+msgid "Country"
+msgstr ""
+
+#: templates/dashboard/secure_employee_creation.html:161
+#: templates/dashboard/secure_employee_profile.html:174
+msgid "City"
+msgstr ""
+
+#: templates/dashboard/secure_employee_creation.html:167
+#: templates/dashboard/secure_employee_profile.html:180
+msgid "Note"
+msgstr ""
+
+#: templates/dashboard/secure_employee_creation.html:177
+#: templates/dashboard/secure_employee_profile.html:190
+msgid "Save"
+msgstr ""
+
+#: templates/dashboard/secure_employee_profile.html:40
+msgid "Edit Employee"
+msgstr ""
+
+#: templates/dashboard/secure_employees.html:64
+#: templates/dashboard/secure_employees.html:86
+msgid "Employees List"
+msgstr ""
+
+#: templates/dashboard/secure_employees.html:105
+msgid "Option"
+msgstr ""
+
+#: templates/dashboard/secure_settings.html:57
+#: templates/dashboard/secure_settings.html:71
+#: templates/dashboard/secure_settings.html:87
+msgid "Edit Settings"
+msgstr ""
+
+#: templates/dashboard/secure_settings.html:105
+msgid "Upload"
+msgstr ""
+
+#: templates/dashboard/secure_settings.html:110
+msgid "Clear"
+msgstr ""
+
+#: templates/dashboard/secure_settings.html:125
+msgid "Company Name"
+msgstr ""
+
+#: templates/dashboard/secure_settings.html:134
+msgid "Company E-mail"
+msgstr ""
+
+#: templates/dashboard/secure_settings.html:144
+msgid "Company Phone"
+msgstr ""
+
+#: templates/dashboard/secure_settings.html:153
+msgid "Company Fax"
+msgstr ""
+
+#: templates/dashboard/secure_settings.html:161
+msgid "Company Address"
+msgstr ""
+
+#: templates/dashboard/secure_settings.html:195
+msgid "Tax Number"
+msgstr ""
+
+#: templates/dashboard/secure_settings.html:204
+msgid "Terms & Conditions"
+msgstr ""

@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.3
+    container_name: elasticsearch_oa
+    environment:
+      - cluster.name=es-sea-bidding
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - $PWD/data:/usr/share/elasticsearch/data
+    ports:
+      - "172.18.0.1:9200:9200"
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.2.3
+    volumes:
+      - ./kibana.yml:/usr/share/kibana/config/kibana.yml
+    ports:
+      - "172.18.0.1:5602:5601"
+    depends_on:
+      - elasticsearch

@@ -1,0 +1,493 @@
+{% extends "public/public_base.html" %}
+
+
+
+
+{% block preview %}
+
+    <section class="parallax-window  hidden-lg" data-parallax="scroll"
+             data-image-src="/static/pub-assets/img/sub_header_2.jpg"
+             data-natural-width="1400" data-natural-height="470">
+        <div id="subheader">
+            <div id="sub_content">
+                <div id="thumb">
+                    <img
+                            src="{{ setting.image_url|default_if_none:'/static/app-assets/images/photo_default.png' }}"
+                            alt=""></div>
+                <div class="info_box">
+                    {% if setting.company_name %}
+                        <h1>{{ setting.company_name }}</h1>
+                    {% endif %}
+                    {% if setting.company_phone_number %}
+                        <div><i class="icon_phone"></i> {{ setting.company_phone_number }}</div>
+                    {% endif %}
+                    {% if setting.company_email %}
+                        <div><i class="icon_mail"></i> {{ setting.company_email }}</div>
+                    {% endif %}
+                    {% if setting.company_phone_number %}
+                        <div><i class="icon_printer-alt"></i> {{ setting.company_fax_number }}</div>
+                    {% endif %}
+                    {% if setting.company_address_street %}
+                        <div><i class="icon_pin"></i> {{ setting.company_address_street }}
+                            {{ setting.company_address_house_number }}, {{ setting.company_address_zipecode }} <br>
+                            {{ setting.get_company_address_city_display }} {{ setting.get_company_address_country_display }}
+                        </div>
+                    {% endif %}
+                </div>
+
+
+            </div><!-- End sub_content -->
+        </div><!-- End subheader -->
+    </section>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container margin_60">
+        <div id="tabs" class="tabs">
+            <nav>
+                <ul>
+                    <li><a href="#section-1" class="icon-profile"><span>Main info</span></a>
+                    </li>
+
+                    </li>
+                    <li><a href="#section-3" class="icon-settings"><span>Settings</span></a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="content">
+
+                <section id="section-1">
+                    <div class="indent_title_in">
+                        <i class="icon_documents_alt"></i>
+                        <h3>Overview of Your Orders</h3>
+                        <p>Partem diceret praesent mel et, vis facilis alienum antiopam ea, vim in sumo diam sonet.
+                            Illud ignota cum te, decore elaboraret nec ea. Quo ei graeci repudiare definitionem. Vim et
+                            malorum ornatus assentior, exerci elaboraret eum ut, diam meliore no mel.</p>
+                    </div>
+
+                    <div class="wrapper_indent">
+                        <table class="table table-striped responsive">
+                            <thead>
+                            <tr>
+                                <th>State</th>
+                                <th>Date</th>
+                                <th>Invoice</th>
+                                <th>Order No</th>
+                                <th>Dealer Name</th>
+                                <th>Amount</th>
+                                <th>Settings</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td style="width:5%">
+                                    <i class="badge badge-success">delivered</i>
+                                </td>
+                                <td>
+                                   06/07/2018
+                                </td>
+                                <td>
+                                    INV-001010
+                                </td>
+                                 <td>
+                                    PO-005201
+                                </td>
+                                 <td>
+                                    Elizabeth Washington
+                                </td>
+                                 <td>
+                                    19
+                                </td>
+                                 <td>
+                                    <a class="btn btn-sm btn-primary"><i class="icon_document_alt"></i></a>
+                                    <a class="btn btn-sm btn-warning"><i class="icon_cloud-download"></i></a>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td style="width:5%">
+                                    <i class="badge badge-warning">pending</i>
+                                </td>
+                                <td>
+                                   10/05/2018
+                                </td>
+                                <td>
+                                    INV-001009
+                                </td>
+                                 <td>
+                                    PO-005201
+                                </td>
+                                 <td>
+                                    Elizabeth Washington
+                                </td>
+                                 <td>
+                                    6
+                                </td>
+                                 <td>
+                                     <a class="btn btn-sm btn-primary"><i class="icon_document_alt"></i></a>
+                                    <a class="btn btn-sm btn-warning"><i class="icon_cloud-download"></i></a>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td style="width:5%">
+                                    <i class="badge badge-info">in-progress</i>
+                                </td>
+                                <td>
+                                   06/05/2017
+                                </td>
+                                <td>
+                                    INV-001001
+                                </td>
+                                 <td>
+                                    PO-005201
+                                </td>
+                                 <td>
+                                    Elizabeth Washington
+                                </td>
+                                 <td>
+                                    6
+                                </td>
+                                 <td>
+                                   <a class="btn btn-sm btn-primary"><i class="icon_document_alt"></i></a>
+                                    <a class="btn btn-sm btn-warning"><i class="icon_cloud-download"></i></a>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td style="width:5%">
+                                    <i class="badge badge-danger">canceled</i>
+                                </td>
+                                <td>
+                                   06/02/2017
+                                </td>
+                                <td>
+                                    INV-001001
+                                </td>
+                                 <td>
+                                    PO-005201
+                                </td>
+                                 <td>
+                                    Elizabeth Washington
+                                </td>
+                                 <td>
+                                    19
+                                </td>
+                                 <td>
+                                     <a class="btn btn-sm btn-primary"><i class="icon_document_alt"></i></a>
+                                    <a class="btn btn-sm btn-warning"><i class="icon_cloud-download"></i></a>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td style="width:5%">
+                                    <i class="badge badge-success">delivered</i>
+                                </td>
+                                <td>
+                                   06/05/2017
+                                </td>
+                                <td>
+                                    INV-001001
+                                </td>
+                                 <td>
+                                    PO-005201
+                                </td>
+                                 <td>
+                                    Elizabeth Washington
+                                </td>
+                                 <td>
+                                    3
+                                </td>
+                                 <td>
+                                    <a class="btn btn-sm btn-primary"><i class="icon_document_alt"></i></a>
+                                    <a class="btn btn-sm btn-warning"><i class="icon_cloud-download"></i></a>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td style="width:5%">
+                                    <i class="badge badge-success">delivered</i>
+                                </td>
+                                <td>
+                                   06/05/2017
+                                </td>
+                                <td>
+                                    INV-001001
+                                </td>
+                                 <td>
+                                    PO-005201
+                                </td>
+                                 <td>
+                                    Elizabeth Washington
+                                </td>
+                                 <td>
+                                    19
+                                </td>
+                                 <td>
+                                    <a class="btn btn-sm btn-primary"><i class="icon_document_alt"></i></a>
+                                    <a class="btn btn-sm btn-warning"><i class="icon_cloud-download"></i></a>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td style="width:5%">
+                                    <i class="badge badge-success">delivered</i>
+                                </td>
+                                <td>
+                                   03/01/2017
+                                </td>
+                                <td>
+                                    INV-001001
+                                </td>
+                                 <td>
+                                    PO-005201
+                                </td>
+                                 <td>
+                                    Elizabeth Washington
+                                </td>
+                                 <td>
+                                    25
+                                </td>
+                                 <td>
+                                    <a class="btn btn-sm btn-primary"><i class="icon_document_alt"></i></a>
+                                    <a class="btn btn-sm btn-warning"><i class="icon_cloud-download"></i></a>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td style="width:5%">
+                                    <i class="badge badge-danger">canceled</i>
+                                </td>
+                                <td>
+                                   06/05/2017
+                                </td>
+                                <td>
+                                    INV-001001
+                                </td>
+                                 <td>
+                                    PO-005201
+                                </td>
+                                 <td>
+                                    Elizabeth Washington
+                                </td>
+                                 <td>
+                                    19
+                                </td>
+                                 <td>
+                                     <a class="btn btn-sm btn-primary"><i class="icon_document_alt"></i></a>
+                                    <a class="btn btn-sm btn-warning"><i class="icon_cloud-download"></i></a>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td style="width:5%">
+                                    <i class="badge badge-success">delivered</i>
+                                </td>
+                                <td>
+                                   06/05/2017
+                                </td>
+                                <td>
+                                    INV-001001
+                                </td>
+                                 <td>
+                                    PO-005201
+                                </td>
+                                 <td>
+                                    Elizabeth Washington
+                                </td>
+                                 <td>
+                                    22
+                                </td>
+                                 <td>
+                                     <a class="btn btn-sm btn-primary"><i class="icon_document_alt"></i></a>
+                                    <a class="btn btn-sm btn-warning"><i class="icon_cloud-download"></i></a>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div><!-- End wrapper_indent -->
+                </section><!-- End section 1 -->
+
+
+                <section id="section-3">
+
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-6 add_bottom_15">
+                            <div class="indent_title_in">
+                                <i class="icon_lock_alt"></i>
+                                <h3>Change your password</h3>
+                                <p>
+                                    Mussum ipsum cacilds, vidis litro abertis.
+                                </p>
+                            </div>
+                            <div class="wrapper_indent">
+                                <div class="form-group">
+                                    <label>Old password</label>
+                                    <input class="form-control" name="old_password" id="old_password" type="password">
+                                </div>
+                                <div class="form-group">
+                                    <label>New password</label>
+                                    <input class="form-control" name="new_password" id="new_password" type="password">
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirm new password</label>
+                                    <input class="form-control" name="confirm_new_password" id="confirm_new_password"
+                                           type="password">
+                                </div>
+                                <button type="submit" class="btn_1 green">Update Password</button>
+                            </div><!-- End wrapper_indent -->
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 add_bottom_15">
+                            <div class="indent_title_in">
+                                <i class="icon_mail_alt"></i>
+                                <h3>Change your email</h3>
+                                <p>
+                                    Mussum ipsum cacilds, vidis litro abertis.
+                                </p>
+                            </div>
+                            <div class="wrapper_indent">
+                                <div class="form-group">
+                                    <label>Old email</label>
+                                    <input class="form-control" name="old_email" id="old_email" type="email">
+                                </div>
+                                <div class="form-group">
+                                    <label>New email</label>
+                                    <input class="form-control" name="new_email" id="new_email" type="email">
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirm new email</label>
+                                    <input class="form-control" name="confirm_new_email" id="confirm_new_email"
+                                           type="email">
+                                </div>
+                                <button type="submit" class="btn_1 green">Update Email</button>
+                            </div><!-- End wrapper_indent -->
+                        </div>
+
+                    </div><!-- End row -->
+
+                    <hr class="styled_2">
+
+                    <div class="indent_title_in">
+                        <i class="icon_shield"></i>
+                        <h3>Notification settings</h3>
+                        <p>
+                            Mussum ipsum cacilds, vidis litro abertis.
+                        </p>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-6">
+                            <div class="wrapper_indent">
+                                <table class="table table-striped notifications">
+                                    <tbody>
+                                    <tr>
+                                        <td style="width:5%">
+                                            <i class="icon_pencil-edit_alt"></i>
+                                        </td>
+                                        <td style="width:65%">
+                                            New orders
+                                        </td>
+                                        <td style="width:35%">
+                                            <label>
+                                                <input type="checkbox" name="option_1_settings" checked class="icheck"
+                                                       value="yes">Yes</label>
+                                            <label class="margin_left">
+                                                <input type="checkbox" name="option_1_settings" class="icheck"
+                                                       value="no">No</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="icon_pencil-edit_alt"></i>
+                                        </td>
+                                        <td>
+                                            Modified orders
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="checkbox" name="option_2_settings" checked class="icheck"
+                                                       value="yes">Yes</label>
+                                            <label class="margin_left">
+                                                <input type="checkbox" name="option_2_settings" class="icheck"
+                                                       value="no">No</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="icon_pencil-edit_alt"></i>
+                                        </td>
+                                        <td>
+                                            New user registration
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="checkbox" name="option_3_settings" checked class="icheck"
+                                                       value="yes">Yes</label>
+                                            <label class="margin_left">
+                                                <input type="checkbox" name="option_3_settings" class="icheck"
+                                                       value="no">No</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="icon_pencil-edit_alt"></i>
+                                        </td>
+                                        <td>
+                                            New comments
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <input type="checkbox" name="option_4_settings" checked class="icheck"
+                                                       value="yes">Yes</label>
+                                            <label class="margin_left">
+                                                <input type="checkbox" name="option_4_settings" class="icheck"
+                                                       value="no">No</label>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <button type="submit" class="btn_1 green">Update notifications settings</button>
+                            </div>
+
+                        </div><!-- End row -->
+                    </div><!-- End wrapper_indent -->
+
+                </section><!-- End section 3 -->
+
+            </div><!-- End content -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_js_style %}
+
+    <!-- Specific scripts -->
+    <script src="/static/pub-assets/js/tabs.js"></script>
+    <script>
+        new CBPFWTabs(document.getElementById('tabs'));
+    </script>
+
+    <script src="/static/pub-assets/js/bootstrap3-wysihtml5.min.js"></script>
+    <script type="text/javascript">
+        $('.wysihtml5').wysihtml5({});
+    </script>
+    <script src="/static/pub-assets/js/dropzone.min.js"></script>
+    <script>
+        if ($('.dropzone').length > 0) {
+            Dropzone.autoDiscover = false;
+            $("#photos").dropzone({
+                url: "upload",
+                addRemoveLinks: true
+            });
+
+            $("#logo_picture").dropzone({
+                url: "upload",
+                maxFiles: 1,
+                addRemoveLinks: true
+            });
+
+            $(".menu-item-pic").dropzone({
+                url: "upload",
+                maxFiles: 1,
+                addRemoveLinks: true
+            });
+        }
+    </script>
+
+{% endblock %}

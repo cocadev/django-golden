@@ -1,0 +1,262 @@
+{% extends "dashboard/management_base.html" %}
+{% load tags %}
+
+{% block page_css_style %}
+
+    <link rel="stylesheet" type="text/css"
+          href="/static/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/app-assets/vendors/css/forms/icheck/icheck.css">
+    <link rel="stylesheet" type="text/css" href="/static/app-assets/vendors/css/forms/icheck/custom.css">
+    <link rel="stylesheet" type="text/css" href="/static/app-assets/css/core/menu/menu-types/vertical-menu-modern.css">
+    <link rel="stylesheet" type="text/css" href="/static/app-assets/css/core/colors/palette-gradient.css">
+    <link rel="stylesheet" type="text/css" href="/static/app-assets/css/pages/invoice.css">
+    <link rel="stylesheet" type="text/css" href="/static/app-assets/vendors/css/forms/selects/select2.min.css">
+{% endblock %}
+
+{% block page_js %}
+    <script src="/static/app-assets/vendors/js/tables/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="/static/app-assets/vendors/js/tables/datatable/dataTables.bootstrap4.min.js"
+            type="text/javascript"></script>
+    <script src="/static/app-assets/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
+    <script src="/static/app-assets/vendors/js/forms/select/select2.full.min.js" type="text/javascript"></script>
+    <script src="/static/app-assets/js/scripts/modal/components-modal.js" type="text/javascript"></script>
+    <script src="/static/assets/js/orders.js" type="text/javascript"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            Orders.init()
+        });
+    </script>
+{% endblock %}
+
+
+
+
+{% block content %}
+
+    <div class="content-wrapper">
+        <div class="content-header row d-print-none">
+            <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
+                <h3 class="content-header-title mb-0 d-inline-block">Invoices</h3>
+                <div class="row breadcrumbs-top d-inline-block">
+                    <div class="breadcrumb-wrapper col-12">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'secure.orders' %}">Invoices</a>
+                            </li>
+                            <li class="breadcrumb-item active">Invoice Overview
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="content-header-right col-md-6 col-12">
+                <div class="dropdown float-md-right">
+                    <a class="btn btn-primary btn-sm white d-print-none" data-toggle="modal" id="add-order"
+                       data-target="#bootstrap"><i
+                            class="ft-plus white"></i> Add Item
+                    </a>
+                     <a class="btn btn-success btn-sm white d-print-none"
+                        href="/accounts/orders/{{ invoice }}/invoice"
+                        target="_blank"
+                       data-target="#bootstrap"><i
+                            class="ft-file-text white"></i> Download Invoice
+                    </a>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section class="card">
+                <div class="card-header">
+                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <a id="re-loader" style="display: none" data-action="reload"><i class="ft-rotate-cw"></i></a>
+                        <a data-action="expand"><i class="ft-maximize d-print-none"></i></a>
+
+                    </div>
+                </div>
+                <div id="invoice-template" class="card-body">
+                    <!-- Invoice Company Details -->
+                    <div id="invoice-company-details" class="row">
+                        <div class="col-md-6 col-sm-12 ">
+                            <div class="company_logo">
+                                <img src="{{ settings.image_url|default_if_none:'/static/app-assets/images/photo_default.png' }}"
+                                     alt="Company logo" class=""
+                                />
+                            </div>
+                            <div class="">
+                                <div class="media-body">
+                                    <ul class="pb-3 px-0 list-unstyled">
+                                        <li class="text-bold-800">{{ settings.company_name }}</li>
+                                        <li>{{ settings.company_address_street }} {{ settings.company_address_house_number }},</li>
+                                        <li>{{ settings.get_company_address_city_display }} {{ settings.company_address_zipecode }},</li>
+                                        <li>{{ settings.get_company_address_country_display }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 col-sm-12 text-center text-md-right">
+                            <h2>INVOICE</h2>
+                            <p class="pb-3">{{ invoice.uuid }} </p>
+                        </div>
+                    </div>
+                    <!--/ Invoice Company Details -->
+                    <!-- Invoice Customer Details -->
+                    <div id="invoice-customer-details" class="row pt-2">
+                        <div class="col-sm-12 text-center text-md-left">
+                            <p class="text-muted">Bill To</p>
+                        </div>
+                        <div class="col-md-6 col-sm-12 text-center text-md-left">
+                            <ul class="px-0 list-unstyled">
+                                <li class="text-bold-800"><strong>{{ invoice.client.company_name }}</strong></li>
+                                <li class="text-bold-800">{{ invoice.client.first_name }} {{ invoice.client.last_name }}</li>
+                                <li>{{ invoice.client.business_address_street }} {{ invoice.client.business_address_house_number }},</li>
+                                <li>{{ invoice.client.business_address_zipecode }} {{ invoice.client.get_business_address_city_display }} {{ invoice.client.get_business_address_country_display }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 col-sm-12 text-center text-md-right">
+                            <p>
+                                <span class="text-muted">Invoice Date :</span> {{ invoice.issue_date|date:"d, M Y - H:m" }}
+                            </p>
+                            <p>
+                                <span class="text-muted">State :</span>
+                                <span class="badge badge-warning state-{{ invoice.get_state_display }}">{{ invoice.get_state_display }}</span>
+
+                            </p>
+                        </div>
+                    </div>
+                    <!--/ Invoice Customer Details -->
+                    <!-- Invoice Items Details -->
+                    <div id="invoice-items-details" class="pt-2">
+                        <div class="row">
+                            <div class="table-responsive col-sm-12">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Item & Description</th>
+                                        <th class="text-center">Amount</th>
+                                        <th class="text-center">Unit</th>
+                                        <th class="text-center">Price</th>
+                                        <th class="text-right d-print-none" style="max-width:5px">Option</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for order in invoice.get_active_orders %}
+                                        <tr>
+                                            <th scope="row"> {{ forloop.counter }}</th>
+                                            <td>
+                                                <p>{{ order.product.name }}</p>
+                                                <p class="text-short-description">{{ order.product.short_description }}</p>
+                                            </td>
+                                            <td class="text-center">{{ order.amount|to_int }}</td>
+                                            <td class="text-center">{{ order.get_units_display }}</td>
+                                            <td class="text-center">{{ order.get_price }}</td>
+                                            <td class="text-right d-print-none">
+                                                <button type="button" data-action="reload" data-id="{{ order.pk }}"
+                                                        class="btn btn-sm  btn-icon btn-pure secondary remove-order"><i
+                                                        class="la la-remove"></i></button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Invoice Footer -->
+                    <div id="invoice-footer">
+                        <div class="row">
+                            <div class="col-md-7 col-sm-12">
+                                <h6>Terms & Condition</h6>
+                                <p>You know, being a test pilot isn't always the healthiest business
+                                    in the world. We predict too much for the next year and yet far
+                                    too little for the next 10.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ Invoice Footer -->
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="modal fade text-left" id="bootstrap" tabindex="-1" role="dialog" aria-labelledby="modali"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="myModalLabel35"> Add Product to Invoice</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" id="orderForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="invoice" value="{{ invoice.pk }}">
+                    <div class="modal-body">
+                        <div class="alert alert-danger alert-dismissible mb-2" role="alert"  id="orders-alert" style="display: none">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="alert-heading mb-2">Error!</h4>
+                            <p>Some required values are missing ...</p>
+                            <p class="mb-0">May be you have to create a unit for that <a href="#" class="alert-link">product</a>.</p>
+                        </div>
+
+                        <fieldset class="form-group floating-label-form-group">
+                            <label for="products">Select Product *</label>
+                            <select class="form-control select2" name="product" required id="products">
+                                <option></option>
+                            </select>
+                        </fieldset>
+                        <br>
+                        <fieldset class="form-group floating-label-form-group">
+                            <select type="text" class="form-control select2" name="unit" id="unit"
+                                    required>
+                                <option>---</option>
+                            </select>
+                        </fieldset>
+                        <br>
+                        <fieldset class="form-group floating-label-form-group">
+                            <label for="amount">Amount *</label>
+                            <input type="number" min="0" step=".5" class="form-control" name="amount" id="amount"
+                                   required placeholder="Amount">
+                        </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="reset" class="btn btn-outline-secondary btn-sm" data-dismiss="modal"
+                               value="close">
+                        <input type="submit" id="submitOrder" class="btn btn-outline-primary btn-sm" value="Add">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal animated slideInLeft text-left" tabindex="-1"
+         id="remove-confirm-modal"
+         role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel75">Please confirm your action</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="right">
+                        <button type="button" class="btn btn-sm grey btn-outline-secondary right" data-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button type="button" class="btn btn-sm btn-success" id="remove-confirm-action"
+                                style="float: right">Confirm
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

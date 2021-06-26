@@ -1,0 +1,225 @@
+{% load tags %}
+{% load static %}
+<html>
+<head>
+    <title>Orderangel.com - {{ settings.company_name }}</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 15mm 20mm;
+            counter-increment: page;
+            @bottom-center {
+                content: counter(page);
+                white-space: pre;
+                color: black;
+            }
+
+        }
+
+        body {
+            margin: 15px;
+            font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        @font-face {
+            font-family: Gentium;
+            src: url(http://example.com/fonts/Gentium.otf);
+        }
+
+        .invoice {
+
+        }
+
+        .invoice-head {
+            display: block;
+            float: left;
+            width: 100%;
+        }
+
+        .invoice-body {
+            margin: 0;
+        }
+
+        .invoice-head {
+            display: block;
+            margin: 10px 0 40px 0;
+        }
+
+        .invoice-sender {
+            float: left;
+            width: 55%;
+        }
+
+        .invoice-receiver {
+            float: right;
+            text-align: right;
+            width: 40%;
+        }
+
+        .invoice-details {
+            float: left;
+            width: 100%;
+            margin: 10px 0 30px 0;
+        }
+
+        .invoice-number {
+            float: left;
+            width: 55%;
+        }
+
+        .invoice-date {
+            float: right;
+            text-align: right;
+            width: 45%;
+        }
+
+        .invoice-body {
+            float: left;
+            width: 100%;
+            margin: 10px 0 30px 0;
+        }
+
+        table.invoice-table {
+            width: 100%;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .company_logo {
+            max-width: 250px;
+        }
+
+        table {
+            page-break-after: always;
+            clear: both;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #eee;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 15px 0;
+            padding: 0;
+        }
+
+        li {
+            padding: 3px;
+        }
+
+        table, tr, td, th, tbody, thead, tfoot {
+            page-break-inside: avoid !important;
+        }
+
+        .name {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<div class="invoice" style="page-break-before: always">
+    <div class="invoice-head">
+        <div class="invoice-sender">
+            <div>
+                <img class="company_logo"
+                     src="{{ settings.image_url|default_if_none:'/static/app-assets/images/photo_default.png' }}"
+                     alt="Company logo"
+                />
+                <ul class="pb-3 px-0 list-unstyled">
+                    <li class="text-bold-800"><h4>{{ settings.company_name }}</h4></li>
+                    <li>{{ settings.company_address_street }} {{ settings.company_address_house_number }},</li>
+                    <li>{{ settings.company_address_zipecode }} {{ settings.get_company_address_city_display }}</li>
+                    <li>{{ settings.get_company_address_country_display }}</li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="invoice-receiver">
+            <div>
+                <h3>Bill To</h3>
+            </div>
+            <ul class="pb-3 px-0 list-unstyled">
+                <li class="text-bold-800"><h4>{{ invoice.client.company_name }}</h4></li>
+                <li class="text-bold-800">{{ invoice.client.first_name }} {{ invoice.client.last_name }}</li>
+                <li>{{ invoice.client.business_address_street }} {{ invoice.client.business_address_house_number }},</li>
+                <li>{{ invoice.client.business_address_zipecode }} {{ invoice.client.get_business_address_city_display }}</li>
+                <li>{{ invoice.client.get_business_address_country_display }}</li>
+            </ul>
+
+        </div>
+
+    </div>
+    <div class="invoice-details">
+        <div class="invoice-number">
+            <h2>INVOICE</h2>
+            <p class="pb-3">{{ invoice.uuid }} </p>
+        </div>
+        <div class="invoice-date">
+            <p>
+                <span class="text-muted">Invoice Date :</span>
+                <strong>{{ invoice.issue_date|date:"d, M Y - H:m" }}</strong>
+            </p>
+            <p>
+                <span class="text-muted">State :</span>
+                <strong>{{ invoice.get_state_display }}</strong>
+
+            </p>
+        </div>
+
+    </div>
+    {% for order in invoice.get_active_orders %}
+        {% if forloop.counter in open_when %}
+            <div class="invoice-body">
+            <table class="invoice-table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th class="text-left">Item & Description</th>
+                <th class="text-center">Amount</th>
+                <th class="text-center">Unit</th>
+                <th class="text-center">Price</th>
+            </tr>
+            </thead>
+            <tbody>
+        {% endif %}
+
+
+    <tr>
+        <th class="index"> {{ forloop.counter }}</th>
+        <td>
+            <p class="name">{{ order.product.name }}</p>
+        </td>
+        <td class="text-center">{{ order.amount|to_int }}</td>
+        <td class="text-center">{{ order.get_units_display }}</td>
+        <td class="text-center">{{ order.get_price }}</td>
+    </tr>
+
+    {% if forloop.counter in close_when %}
+        </tbody>
+        </table>
+        </div>
+    {% endif %}
+
+
+    {% endfor %}
+    <div class="invoice-footer">
+        <h5>Terms & Condition</h5>
+        <p>You know, being a test pilot isn't always the healthiest business
+            in the world. We predict too much for the next year and yet far
+            too little for the next 10.</p>
+    </div>
+
+</div>
+
+
+</body>
+</html>

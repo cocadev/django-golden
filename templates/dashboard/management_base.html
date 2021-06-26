@@ -1,0 +1,231 @@
+{% load tags %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description"
+          content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
+    <meta name="keywords"
+          content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
+    <meta name="author" content="PIXINVENT">
+    <title> orderangel.com - Modern Admin Dashboard </title>
+    <link rel="apple-touch-icon" href="/static/app-assets/images/logo/favico.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/app-assets/images/logo/favico.png">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
+          rel="stylesheet">
+    <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
+          rel="stylesheet">
+    <!-- BEGIN VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="/static/app-assets/css/vendors.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/app-assets/fonts/simple-line-icons/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/app-assets/css/app.css">
+    <!-- END MODERN CSS-->
+    {% block page_css_style %}
+
+    {% endblock %}
+
+    <link rel="stylesheet" type="text/css" href="/static/assets/css/style.css">
+
+</head>
+<body class="vertical-layout vertical-menu-modern 2-columns   menu-expanded fixed-navbar"
+      data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" data-role="{{ csrf_token }}">
+<!-- fixed-top-->
+<nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-dark navbar-shadow d-print-none">
+    <div class="navbar-wrapper">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item mobile-menu d-md-none mr-auto"><a
+                        class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
+                        class="ft-menu font-large-1"></i></a></li>
+                <li class="nav-item mr-auto">
+                    <a class="navbar-brand navbar-brand-center" href="/">
+                        <img class="brand-logo" alt="modern admin logo"
+                             src="/static/app-assets/images/logo/logo_oa.png">
+                    </a>
+                </li>
+                <li class="nav-item d-md-none">
+                    <a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i
+                            class="la la-ellipsis-v"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-container content">
+            <div class="collapse navbar-collapse" id="navbar-mobile">
+                <ul class="nav navbar-nav mr-auto float-left">
+                    <li class="nav-item d-none d-md-block"><a class="nav-link nav-link-expand" href="#"><i
+                            class="ficon ft-maximize"></i></a></li>
+                </ul>
+                <ul class="nav navbar-nav float-right">
+                    {% get_current_language as LANGUAGE_CODE %}
+
+                    {% get_available_languages as LANGUAGES %}
+                    <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link"
+                                                                       id="dropdown-flag" href="#"
+                                                                       data-toggle="dropdown"
+                                                                       aria-haspopup="true" aria-expanded="false"><i
+                            class="flag-icon flag-icon-{{ LANGUAGE_CODE }}"></i><span class="selected-language"></span></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown-flag">
+
+
+                            {% for lang in LANGUAGES %}
+                                <a class="dropdown-item language-selector" href="#" data-language="{{ lang.0 }}"><i
+                                        class="flag-icon flag-icon-{{ lang.0 }}"></i> {{ lang.1 }}</a>
+                            {% endfor %}
+
+                        </div>
+                    </li>
+                    <li class="dropdown dropdown-user nav-item">
+                        <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
+                <span class="mr-1 welcome-message">{% trans 'Hello' %},
+                  <span class="text-bold-700">{{ user.get_full_name }}</span>
+                </span>
+                            <span class="avatar avatar-online">
+                  <img src="/static/app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"><i></i></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i
+                                class="ft-user"></i> Edit Profile</a>
+                            <a class="dropdown-item" href="#"><i class="ft-mail"></i> Settings</a>
+                            <a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'logout' %}"><i class="ft-log-out"></i> Logout</a>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow d-print-none" data-scroll-to-active="true">
+    <div class="main-menu-content">
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class=" navigation-header">
+                <span>{% trans 'General' %}</span><i class="la la-ellipsis-h ft-minus"
+                                                                        data-toggle="tooltip"
+                                                                        data-placement="right"
+                                                                        data-original-title="General"></i>
+            </li>
+            <li class=" nav-item {% if request.path|endswith:'/accounts/' %}active{% endif %}"><a
+                    href="{% url 'secure.home' %}"><i class="la icon-screen-desktop"></i><span
+                    class="menu-title" data-i18n="nav.animation.main">{% trans 'Dashboard' %}</span></a></li>
+            <li class=" nav-item  {% if '/employees/' in request.path %}active{% endif %}"><a
+                    href="{% url 'secure.employees' %}"><i class="la icon-ghost"></i><span
+                    class="menu-title">{% trans 'Employees' %}</span></a>
+
+            </li>
+            <li class="nav-item {% if '/settings/' in request.path %}active{% endif %}"><a
+                    href="{% url 'secure.settings' %}"><i class="la icon-settings"></i><span
+                    class="menu-title"
+                    data-i18n="nav.changelog.main">{% trans 'Settings' %}</span></a>
+            </li>
+
+            <li class=" navigation-header">
+                <span>{% trans 'Products & Categories' %}</span><i class="la la-ellipsis-h ft-minus"
+                                                                                      data-toggle="tooltip"
+                                                                                      data-placement="right"
+                                                                                      data-original-title="General"></i>
+            </li>
+            <li class=" nav-item {% if '/products/' in request.path %}active{% endif %}"><a
+                    href="{% url 'secure.products' %}"><i class="la icon-layers"></i><span
+                    class="menu-title">{% trans 'Products' %}</span></a>
+            </li>
+            <li class=" nav-item {% if '/categories/' in request.path %}active{% endif %}"><a
+                    href="{% url 'secure.categories' %}"><i class="la icon-grid"></i><span
+                    class="menu-title">{% trans 'Categories' %}</span></a>
+
+            </li>
+            <li class=" nav-item {% if '/orders/' in request.path %}active{% endif %}"><a
+                    href="{% url 'secure.orders' %}"><i class="la icon-basket-loaded"></i><span
+                    class="menu-title">{% trans 'Orders' %}</span></a>
+            </li>
+            <li class=" nav-item {% if '/clients/' in request.path %}active{% endif %}"><a
+                    href="{% url 'secure.clients' %}"><i class="la icon-users"></i><span
+                    class="menu-title">{% trans 'Clients' %}</span></a>
+            </li>
+            <li style="display: none" class=" nav-item {% if '/statistics/' in request.path %}active{% endif %}"><a
+                    href="{% url 'secure.statistics' %}"><i class="la icon-graph"></i><span
+                    class="menu-title">{% trans 'Statistic' %}</span></a>
+            </li>
+            <li class=" navigation-header">
+                <span data-i18n="nav.category.support">Support</span><i class="la la-ellipsis-h ft-minus"
+                                                                        data-toggle="tooltip"
+                                                                        data-placement="right"
+                                                                        data-original-title="Support"></i>
+            </li>
+            <li class=" nav-item"><a href="#"><i class="la icon-support"></i><span
+                    class="menu-title">{% trans 'Support' %}</span></a>
+            </li>
+            <li class=" nav-item">
+                <a href="#"><i
+                        class="la icon-book-open"></i>
+                    <span class="menu-title">{% trans 'Documentation' %}</span>
+                </a>
+            </li>
+            <li class=" nav-item">
+                <a href="#"><i
+                        class="la icon-envelope"></i>
+                    <span class="menu-title">{% trans 'Contact us' %}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="app-content content">
+    {% block content %}
+
+    {% endblock %}
+</div>
+
+<footer class="footer footer-static footer-light navbar-border navbar-shadow d-print-none">
+    <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
+      <span class="float-md-left d-block d-md-inline-block">Copyright &copy; 2018 <a class="text-bold-800 grey darken-2"
+                                                                                     href="/"
+                                                                                     target="_blank">orderangel.com </a>, All rights reserved. </span>
+    </p>
+      <form action="{% url 'set_language' %}" method="post" style="display: none" id="language-form">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ redirect_to }}"/>
+        <select name="language" class="language-select">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% for lang in LANGUAGES %}
+                <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %} selected="selected"{% endif %}>
+                    {{ lang.1 }} ({{ lang.0 }})
+                </option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Go"/>
+    </form>
+</footer>
+
+<script src="/static/app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
+<script src="/static/app-assets/js/core/app-menu.js" type="text/javascript"></script>
+<script src="/static/app-assets/js/core/app.js" type="text/javascript"></script>
+<script src="/static/app-assets/js/scripts/customizer.js" type="text/javascript"></script>
+<!-- END MODERN JS-->
+{% block page_js %}
+{% endblock %}
+<script>
+    $("#pdf-export").on("click", function () {
+        $(".buttons-pdf").click()
+    });
+    $("#excel-export").on("click", function () {
+        $(".buttons-excel").click()
+    });
+    $("#print-export").on("click", function () {
+        $(".buttons-print").click()
+    });
+</script>
+<script>
+    $(".language-selector").on("click", function () {
+        $('.language-select option[value="'+ $(this).attr("data-language") +'"]').attr("selected", "selected");
+        $("#language-form").submit()
+    })
+</script>
+</body>
+</html>
